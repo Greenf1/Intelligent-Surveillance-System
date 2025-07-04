@@ -1,0 +1,127 @@
+
+
+Cahier des Charges Fonctionnel et Technique
+
+Système de Surveillance Intelligent sans Infrastructure Physique
+1. Objectif du Projet
+
+Développer un système de surveillance militaire intelligent permettant la détection d’anomalies ou de regroupements suspects dans des zones géographiques sensibles, sans utilisation de capteurs physiques ni caméras. L’objectif est une surveillance automatisée, continue, réactive et à faible infrastructure, en s’appuyant exclusivement sur des APIs d’analyse et de cartographie.
+
+2. Portée Fonctionnelle du Système
+
+2.1. Fonctionnalités principales
+	•	Surveillance en temps réel de plusieurs zones sensibles définies.
+	•	Visualisation cartographique dynamique.
+	•	Analyse comportementale automatisée des données géographiques.
+	•	Détection de :
+	•	Regroupements suspects
+	•	Changements d’habitude de mouvement
+	•	Anomalies de densité
+	•	Génération d’alertes contextuelles en langage naturel.
+	•	Affichage des alertes et consignes sur interface de contrôle.
+	•	Génération de rapports synthétiques périodiques.
+
+2.2. Fonctionnalités secondaires
+	•	Système de logs pour audit temporaire (durée configurable)
+	•	Interface d’administration des zones surveillées
+	•	Système de permissions utilisateurs
+	•	Possibilité de basculer entre mode “continu” et “ponctuel”
+
+3. Architecture Technique
+
+3.1. Composants principaux
+
+Composant	Description
+Frontend	Interface de contrôle web, responsive, sécurisée
+Backend	Serveur d’orchestration API, gestion des requêtes et analyses
+Google Maps API	Cartographie, récupération de données géo-temporelles, heatmaps, etc.
+OpenAI ChatGPT API (GPT-4-turbo)	Analyse comportementale, génération d’alertes, interprétation
+Database temporaire (optionnelle)	Stockage éphémère des analyses pour 24–72h (configurable)
+
+3.2. Schéma simplifié
+
+[Zones ciblées] -> [Google Maps API] -> [Serveur Backend] -> [OpenAI GPT API]  
+                                       ↘︎                    ↗  
+                                    [Interface Utilisateur]  
+
+
+
+⸻
+
+4. Contraintes & Spécifications Techniques
+	•	📍 Zéro capteur physique
+	•	⏱ Temps réel (rafraîchissement toutes 30 à 60 sec configurable)
+	•	🔐 Sécurité maximale (chiffrement SSL, authentification forte)
+	•	💡 Tolérance aux interruptions réseaux (grâce au cache temporaire)
+	•	🔁 Fonctionnement 24/7
+	•	🧠 Analyse via IA uniquement (pas de traitement humain manuel)
+
+5. APIs Utilisées et Estimations de Consommation
+
+5.1. Approche brute
+
+API	Usage	Coût estimé annuel
+Google Maps	50 000 requêtes/jour	≈ 127 750 $
+OpenAI GPT-4-turbo	100 000 tokens/jour	≈ 730 $
+Total brut	—	128 480 $
+
+5.2. Version optimisée
+
+API	Usage réduit	Coût estimé annuel
+Google Maps	5 000 requêtes/jour	≈ 12 775 $
+OpenAI GPT-4-turbo	inchangé ou compressé	≈ 730 $
+Total optimisé	—	≈ 13 500 $ ✅
+
+
+
+6. Interfaces & UX attendues
+	•	Interface utilisateur web en dashboard avec :
+	•	Carte interactive par zone
+	•	Historique des alertes (temporaire)
+	•	Détail des analyses en langage naturel
+	•	Mode clair/sombre pour usage opérationnel
+	•	Module de configuration (fréquence, zones, seuils)
+
+⸻
+
+7. Sécurité et Résilience
+	•	Authentification multi-facteur (MFA)
+	•	Journalisation des connexions et alertes
+	•	Isolation réseau du backend
+	•	Monitoring automatisé de disponibilité
+	•	Reprise automatique en cas d’erreur API
+
+8. Plan de Déploiement
+
+Étapes proposées :
+	1.	Spécifications détaillées
+	2.	Prototype interface + intégration Maps
+	3.	Connexion OpenAI & logique IA
+	4.	Boucle de test simulée (données fictives)
+	5.	Tests de charge (scalabilité)
+	6.	Mise en production restreinte
+	7.	Déploiement complet 24/7
+
+9. Maintenance et Suivi
+	•	Mises à jour mensuelles des dépendances
+	•	Recalibrage des seuils IA (feedback boucle)
+	•	Support 24/7 (niveau militaire requis)
+	•	Audit sécurité tous les 3 mois
+
+10. Livrables attendus
+	•	Cahier des tests
+	•	Code source complet
+	•	Documentation API + DevOps
+	•	Manuel utilisateur
+	•	Rapport final d’analyse et tuning
+11. Conclusion
+
+Le système proposé constitue une solution de surveillance intelligente innovante, sans infrastructure physique, légère, hautement réactive et peu coûteuse (version optimisée). Il répond aux besoins critiques militaires en matière de sécurité, tout en utilisant des technologies éprouvées et scalables.
+
+✅ Annexes à produire (optionnel)
+	•	Exemple de flux JSON transmis par Google Maps
+	•	Exemple d’alerte générée par GPT (ton, structure)
+	•	Politique de purge automatique des données
+	•	Plan de crise en cas d’échec de l’API externe
+Souhaites-tu maintenant que je :
+	
