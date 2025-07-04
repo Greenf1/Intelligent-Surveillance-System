@@ -4,7 +4,7 @@ import {
   alerts, 
   surveillanceMetrics,
   type User, 
-  type InsertUser,
+  type UpsertUser,
   type SurveillanceZone,
   type InsertSurveillanceZone,
   type Alert,
@@ -12,12 +12,13 @@ import {
   type SurveillanceMetrics,
   type InsertSurveillanceMetrics
 } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
-  // Users
-  getUser(id: number): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  // Users for Replit Auth
+  getUser(id: string): Promise<User | undefined>;
+  upsertUser(user: UpsertUser): Promise<User>;
 
   // Surveillance Zones
   getAllSurveillanceZones(): Promise<SurveillanceZone[]>;
@@ -39,26 +40,44 @@ export interface IStorage {
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<number, User>;
   private surveillanceZones: Map<number, SurveillanceZone>;
   private alerts: Map<number, Alert>;
   private metrics: SurveillanceMetrics | undefined;
-  private currentUserId: number;
+  private users: Map<string, User>;
   private currentZoneId: number;
   private currentAlertId: number;
   private currentMetricsId: number;
 
   constructor() {
-    this.users = new Map();
     this.surveillanceZones = new Map();
     this.alerts = new Map();
-    this.currentUserId = 1;
+    this.users = new Map();
     this.currentZoneId = 1;
     this.currentAlertId = 1;
     this.currentMetricsId = 1;
 
     // Initialize with sample zones
     this.initializeSampleData();
+  }
+
+  // User operations for Replit Auth
+  async getUser(id: string): Promise<User | undefined> {
+    return this.users.get(id);
+  }
+
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    const existingUser = this.users.get(userData.id);
+    const user: User = {
+      id: userData.id,
+      email: userData.email ?? null,
+      firstName: userData.firstName ?? null,
+      lastName: userData.lastName ?? null,
+      profileImageUrl: userData.profileImageUrl ?? null,
+      createdAt: existingUser?.createdAt || new Date(),
+      updatedAt: new Date(),
+    };
+    this.users.set(userData.id, user);
+    return user;
   }
 
   private initializeSampleData() {
@@ -104,6 +123,7 @@ export class MemStorage implements IStorage {
         ...zone,
         id,
         createdAt: new Date(),
+        isActive: true,
       };
       this.surveillanceZones.set(id, newZone);
     });
@@ -119,22 +139,11 @@ export class MemStorage implements IStorage {
     };
   }
 
-  // User methods
-  async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
-  }
-
+  // Legacy user methods (kept for compatibility)
   async getUserByUsername(username: string): Promise<User | undefined> {
     return Array.from(this.users.values()).find(
-      (user) => user.username === username,
+      (user) => user.firstName === username || user.lastName === username,
     );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentUserId++;
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
   }
 
   // Surveillance Zone methods
@@ -152,6 +161,7 @@ export class MemStorage implements IStorage {
       ...zone,
       id,
       createdAt: new Date(),
+      isActive: zone.isActive ?? true,
     };
     this.surveillanceZones.set(id, newZone);
     return newZone;
@@ -191,6 +201,11 @@ export class MemStorage implements IStorage {
       ...alert,
       id,
       createdAt: new Date(),
+      zoneId: alert.zoneId ?? null,
+      aiAnalysis: alert.aiAnalysis ?? null,
+      confidence: alert.confidence ?? null,
+      threatLevel: alert.threatLevel ?? null,
+      isResolved: alert.isResolved ?? false,
     };
     this.alerts.set(id, newAlert);
     return newAlert;

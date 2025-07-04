@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { AlertTriangle, AlertCircle, Info } from "lucide-react";
+import { AlertTriangle, AlertCircle, Info, Clock, CheckCircle2, Eye, MoreHorizontal } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import type { Alert } from "@/types/surveillance";
@@ -56,10 +56,21 @@ export function AlertsPanel({ alerts, onResolveAlert }: AlertsPanelProps) {
     <Card className="bg-card border-border h-[600px] flex flex-col">
       <CardHeader className="pb-4">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg font-semibold">Alertes Récentes</CardTitle>
-          <Button variant="ghost" size="sm" className="text-xs text-primary hover:text-primary/80">
-            Tout effacer
-          </Button>
+          <div className="flex items-center space-x-3">
+            <CardTitle className="text-lg font-semibold">Alertes Récentes</CardTitle>
+            <Badge variant="outline" className="text-xs text-amber-400 border-amber-400">
+              <Clock className="w-3 h-3 mr-1" />
+              TEMPS RÉEL
+            </Badge>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Badge variant="secondary" className="text-xs">
+              {alerts.filter(a => !a.isResolved).length} actives
+            </Badge>
+            <Button variant="ghost" size="sm" className="text-xs text-primary hover:text-primary/80">
+              <MoreHorizontal className="w-3 h-3" />
+            </Button>
+          </div>
         </div>
       </CardHeader>
       
@@ -77,50 +88,83 @@ export function AlertsPanel({ alerts, onResolveAlert }: AlertsPanelProps) {
             return (
               <div
                 key={alert.id}
-                className={`border rounded-lg p-3 ${getAlertColor(alert.type)} ${
-                  alert.isResolved ? 'opacity-50' : ''
+                className={`border rounded-lg p-4 transition-all duration-300 hover:shadow-lg ${getAlertColor(alert.type)} ${
+                  alert.isResolved ? 'opacity-60' : alert.type === 'critical' ? 'alert-pulse' : ''
                 }`}
               >
-                <div className="flex items-start justify-between mb-2">
+                <div className="flex items-start justify-between mb-3">
                   <div className="flex items-center space-x-2">
-                    <Icon className={`w-4 h-4 ${getAlertBadgeColor(alert.type)}`} />
-                    <Badge variant="outline" className={`text-xs ${getAlertBadgeColor(alert.type)} border-current`}>
+                    <Icon className={`w-5 h-5 ${getAlertBadgeColor(alert.type)}`} />
+                    <Badge variant="outline" className={`text-xs font-semibold ${getAlertBadgeColor(alert.type)} border-current`}>
                       {alert.type.toUpperCase()}
                     </Badge>
                     {alert.isResolved && (
                       <Badge variant="outline" className="text-xs text-green-400 border-green-400">
+                        <CheckCircle2 className="w-3 h-3 mr-1" />
                         RÉSOLU
                       </Badge>
                     )}
                   </div>
-                  <span className="text-xs text-muted-foreground">
-                    {formatTime(alert.createdAt)}
-                  </span>
+                  <div className="text-right">
+                    <div className="text-xs text-muted-foreground">
+                      {formatTime(alert.createdAt)}
+                    </div>
+                    {alert.threatLevel && (
+                      <div className={`text-xs font-bold ${
+                        alert.threatLevel >= 70 ? 'text-red-400' :
+                        alert.threatLevel >= 40 ? 'text-amber-400' :
+                        'text-green-400'
+                      }`}>
+                        Menace: {alert.threatLevel}%
+                      </div>
+                    )}
+                  </div>
                 </div>
                 
-                <h4 className="text-sm font-medium text-foreground mb-1">
+                <h4 className="text-sm font-semibold text-foreground mb-2 leading-tight">
                   {alert.title}
                 </h4>
                 
-                <p className="text-xs text-muted-foreground mb-2">
+                <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
                   {alert.description}
                 </p>
                 
-                {alert.confidence && (
-                  <div className="text-xs text-muted-foreground mb-2">
-                    Confiance IA: <span className="text-green-400">{(alert.confidence * 100).toFixed(1)}%</span>
+                <div className="grid grid-cols-2 gap-3 mb-3 text-xs">
+                  {alert.confidence && (
+                    <div className="flex items-center space-x-1">
+                      <Eye className="w-3 h-3 text-muted-foreground" />
+                      <span className="text-muted-foreground">Confiance:</span>
+                      <span className="text-green-400 font-medium">{(alert.confidence * 100).toFixed(1)}%</span>
+                    </div>
+                  )}
+                  <div className="flex items-center space-x-1">
+                    <span className="text-muted-foreground">Zone:</span>
+                    <span className={`font-medium ${getAlertBadgeColor(alert.type)}`}>
+                      {alert.zone?.name || `Zone ${alert.zoneId}`}
+                    </span>
+                  </div>
+                </div>
+                
+                {alert.aiAnalysis && (
+                  <div className="bg-muted/30 rounded p-2 mb-3">
+                    <div className="text-xs text-muted-foreground">
+                      <strong>Analyse IA:</strong> Patterns détectés et recommandations disponibles
+                    </div>
                   </div>
                 )}
                 
                 <div className="flex items-center justify-between">
-                  <span className={`text-xs font-medium ${getAlertBadgeColor(alert.type)}`}>
-                    {alert.zone?.name || `Zone ${alert.zoneId}`}
-                  </span>
+                  <div className="flex items-center space-x-2">
+                    <Button variant="ghost" size="sm" className="text-xs h-auto p-1">
+                      <Eye className="w-3 h-3 mr-1" />
+                      Détails
+                    </Button>
+                  </div>
                   {!alert.isResolved && (
                     <Button
-                      variant="ghost"
+                      variant={alert.type === 'critical' ? 'destructive' : 'default'}
                       size="sm"
-                      className="text-xs text-primary hover:text-primary/80 h-auto p-1"
+                      className="text-xs h-auto px-3 py-1"
                       onClick={() => resolveAlertMutation.mutate(alert.id)}
                       disabled={resolveAlertMutation.isPending}
                     >
