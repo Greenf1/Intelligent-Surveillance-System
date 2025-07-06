@@ -1,0 +1,80 @@
+Ce système offre les capacités suivantes :
+ * Authentification Sécurisée : Accès via une page de connexion dédiée (nom d'utilisateur et mot de passe).
+ * Tableau de Bord Interactif : Visualisation des zones surveillées sur une carte interactive.
+ * Gestion des Zones : Création, modification et suppression facilitées des zones de surveillance.
+ * Alertes en Temps Réel : Système de notification et de gestion des alertes instantanées.
+ * Analyse et Métriques : Affichage des données clés sur l'activité du système pour un suivi précis.
+ * Interface Responsive : Conception optimisée pour tous les appareils (ordinateurs, tablettes, mobiles).
+Architecture du Projet
+Le projet est divisé en deux composants principaux qui communiquent via des API RESTful :
+1. Frontend (Client)
+Développé avec React et TypeScript, le frontend offre une expérience utilisateur dynamique et interactive.
+ * Technologies Utilisées : React, TypeScript, HTML, CSS.
+ * Structure Clé :
+   * client/src/App.tsx : Composant racine de l'application.
+   * client/src/pages/login.tsx : Page de connexion.
+   * client/src/pages/landing.tsx : Tableau de bord principal après connexion.
+   * client/src/hooks/useAuth.ts : Hook personnalisé pour la gestion de l'authentification.
+2. Backend (Serveur)
+Le backend, construit avec Flask (Python), gère la logique métier, l'authentification et l'accès aux données.
+ * Technologies Utilisées : Flask, Python, Flask-CORS.
+ * Structure Clé :
+   * src/main.py : Fichier principal du serveur Flask, incluant les routes API et la logique d'authentification.
+Installation et Démarrage
+Suivez ces étapes pour configurer et démarrer l'application sur votre machine locale.
+Prérequis
+Assurez-vous d'avoir les éléments suivants installés :
+ * Node.js (version 14 ou supérieure)
+ * npm (Node Package Manager)
+ * Python (version 3.8 ou supérieure)
+ * pip (Python Package Installer)
+Étapes d'Installation
+ * Cloner le dépôt :
+   git clone https://github.com/Greenf1/Intelligent-Surveillance-System.git
+cd Intelligent-Surveillance-System
+
+ * Installer les dépendances du frontend :
+   cd client
+npm install
+cd ..
+
+ * Installer les dépendances du backend :
+   python3 -m venv venv
+source venv/bin/activate  # Pour Windows : venv\Scripts\activate
+pip install -r requirements.txt
+
+   (Note : Si requirements.txt n'existe pas, vous pouvez le générer en exécutant pip freeze > requirements.txt après avoir activé l'environnement virtuel et installé vos packages.)
+Démarrage de l'Application
+ * Démarrer le backend (serveur Flask) :
+   source venv/bin/activate  # Pour Windows : venv\Scripts\activate
+python src/main.py
+
+   Le serveur sera accessible sur http://localhost:5000.
+ * Démarrer le frontend (serveur de développement React) :
+   cd client
+npm start
+
+   Le frontend démarrera généralement sur http://localhost:3000 et ouvrira automatiquement l'application dans votre navigateur.
+Utilisation
+Connexion
+Accédez à l'application via http://localhost:3000 (ou votre URL de déploiement).
+Utilisez les identifiants par défaut pour vous connecter :
+ * Nom d'utilisateur : admin
+ * Mot de passe : admin123
+Tableau de Bord
+Une fois connecté, le tableau de bord vous permettra de visualiser et de gérer les zones de surveillance, les alertes et les métriques du système.
+APIs Backend
+Le backend expose les points d'API RESTful suivants :
+ * POST /api/auth/login : Authentification de l'utilisateur.
+ * POST /api/auth/logout : Déconnexion de l'utilisateur.
+ * GET /api/auth/user : Récupération des informations de l'utilisateur connecté.
+ * GET /api/zones : Récupération de toutes les zones de surveillance.
+ * POST /api/zones : Création d'une nouvelle zone de surveillance.
+ * PUT /api/zones/<int:zone_id> : Mise à jour d'une zone spécifique.
+ * DELETE /api/zones/<int:zone_id> : Suppression d'une zone spécifique.
+ * GET /api/alerts : Récupération de toutes les alertes.
+ * PUT /api/alerts/<int:alert_id>/resolve : Résolution d'une alerte.
+ * GET /api/metrics : Récupération des métriques du système.
+ * GET /api/threat-levels : Récupération des niveaux de menace par zone.
+ * GET /api/status : Vérification du statut des services (ex: OpenAI, base de données).
+Le frontend est conçu pour interagir automatiquement avec ces APIs pour afficher et gérer les données de manière transparente.
