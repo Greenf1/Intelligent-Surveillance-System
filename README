@@ -1,136 +1,96 @@
- # 🚀 Système de Surveillance Intelligent : Votre Vue à 360° Sécurisée
+# Système de Surveillance Intelligent
 
----
+## Aperçu
 
-## 🎯 Aperçu du Projet
+Ce projet est un **Système de Surveillance Intelligent** conçu pour offrir une solution de sécurité complète et moderne. Il combine une **interface utilisateur intuitive** avec un **backend robuste et performant**, garantissant une gestion des données fluide, sécurisée et en temps réel.
 
-Bienvenue sur le dépôt officiel du **Système de Surveillance Intelligent** ! Cette application web complète est conçue pour transformer la manière dont vous surveillez des zones spécifiques, gérez les alertes et obtenez des métriques en temps réel. Notre solution combine une **interface utilisateur intuitive** avec un **backend robuste et performant**, offrant une gestion de données fluide et sécurisée.
+## Caractéristiques Principales
 
----
+- **Interface Utilisateur Intuitive**: Une expérience utilisateur soignée pour une prise en main rapide et une utilisation efficace.
+- **Backend Performant**: Construit avec des technologies modernes pour assurer la stabilité, la rapidité et la scalabilité.
+- **Gestion de Données Sécurisée**: Des mesures de sécurité avancées pour protéger les flux vidéo et les données stockées.
+- **Surveillance en Temps Réel**: Visualisez les flux de caméras en direct avec une faible latence.
+- **Enregistrement et Lecture**: Enregistrez les flux vidéo et consultez les enregistrements à tout moment.
+- **Détection de Mouvement**: Recevez des alertes et des notifications en cas de détection d'activité.
 
-## ✨ Fonctionnalités Clés
+## Stack Technologique
 
-Découvrez les capacités qui rendent notre système unique :
+- **Frontend**: TypeScript, React (ou autre framework/librairie, à préciser)
+- **Backend**: Node.js, Express (ou autre framework, à préciser)
+- **Base de Données**: (À préciser, par exemple, MongoDB, PostgreSQL)
+- **Communication en Temps Réel**: WebSockets (par exemple, avec Socket.IO)
 
-* **🔒 Authentification Robuste** : Accès sécurisé via une page de connexion dédiée, exigeant un nom d'utilisateur et un mot de passe.
-* **🗺️ Tableau de Bord Interactif** : Visualisez vos zones surveillées en un coup d'œil grâce à une carte dynamique et interactive.
-* **➕ Gestion Simplifiée des Zones** : Créez, modifiez et supprimez vos zones de surveillance en toute simplicité.
-* **🚨 Alertes en Temps Réel** : Recevez des notifications instantanées et gérez efficacement les alertes critiques.
-* **📈 Analyse & Métriques Détaillées** : Suivez l'activité du système et prenez des décisions éclairées grâce à des données clés et des visualisations graphiques.
-* **📱 Interface Responsive Universelle** : Profitez d'une expérience utilisateur optimisée et fluide, quel que soit votre appareil (ordinateurs, tablettes, mobiles).
+## Installation et Démarrage
 
----
+Pour installer et lancer ce système, suivez les étapes ci-dessous.
 
-## 🏗️ Architecture Technique
+### Prérequis
 
-Le projet est conçu avec une architecture client-serveur moderne, garantissant une séparation claire des responsabilités et une meilleure maintenabilité.
+- Node.js et npm (ou yarn)
+- (Toute autre dépendance, comme une base de données spécifique)
 
-### 💻 Frontend : L'Expérience Utilisateur
+### Instructions
 
-Développé avec des technologies de pointe, le frontend assure une interaction fluide et une présentation dynamique des données.
-
-* **Technologies phares** : **React**, **TypeScript**, HTML, CSS.
-* **Structure des dossiers (extraits)** :
-    * `client/src/App.tsx` : Le composant racine de l'application.
-    * `client/src/pages/login.tsx` : La page d'authentification.
-    * `client/src/pages/landing.tsx` : Le tableau de bord principal après connexion.
-    * `client/src/hooks/useAuth.ts` : Un hook personnalisé pour une gestion d'authentification élégante.
-
-### ⚙️ Backend : Le Cœur de l'Intelligence
-
-Construit sur une base solide, le backend gère toute la logique métier, l'authentification des utilisateurs et l'accès aux données via une API RESTful.
-
-* **Technologies phares** : **Flask (Python)**, Flask-CORS.
-* **Fichier principal** :
-    * `src/main.py` : Ce fichier contient le cœur du serveur Flask, définissant toutes les routes API et la logique d'authentification essentielle.
-
----
-
-## 🚀 Démarrage Rapide : Installation & Lancement
-
-Suivez ces instructions détaillées pour configurer et lancer l'application sur votre environnement local.
-
-### Prérequis Indispensables
-
-Avant de commencer, assurez-vous que les éléments suivants sont installés sur votre système :
-
-* **Node.js** (version 14 ou supérieure)
-* **npm** (Node Package Manager)
-* **Python** (version 3.8 ou supérieure)
-* **pip** (Python Package Installer)
-
-### Instructions d'Installation
-
-1.  **Clonez le dépôt GitHub** :
+1.  **Cloner le dépôt**:
     ```bash
-    git clone [https://github.com/Greenf1/Intelligent-Surveillance-System.git](https://github.com/Greenf1/Intelligent-Surveillance-System.git)
+    git clone https://github.com/Greenf1/Intelligent-Surveillance-System.git
     cd Intelligent-Surveillance-System
     ```
 
-2.  **Installez les dépendances du Frontend** :
+2.  **Installer les dépendances du backend**:
     ```bash
-    cd client
+    cd backend
     npm install
-    cd ..
     ```
 
-3.  **Installez les dépendances du Backend** :
+3.  **Installer les dépendances du frontend**:
     ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # Pour Windows : venv\Scripts\activate
-    pip install -r requirements.txt
+    cd ../frontend
+    npm install
     ```
-    > **Note** : Si le fichier `requirements.txt` n'est pas présent, vous pouvez le générer après avoir activé votre environnement virtuel et installé les packages nécessaires en exécutant : `pip freeze > requirements.txt`.
 
-### Lancement de l'Application
+4.  **Configurer l'environnement**:
+    Créez un fichier `.env` dans le dossier `backend` avec les variables d'environnement nécessaires (clés d'API, informations de connexion à la base de données, etc.).
 
-Une fois les dépendances installées, vous pouvez démarrer les deux parties de l'application :
-
-1.  **Démarrez le Backend (Serveur Flask)** :
+5.  **Lancer le serveur backend**:
     ```bash
-    source venv/bin/activate  # Pour Windows : venv\Scripts\activate
-    python src/main.py
-    ```
-    Le serveur sera accessible localement à l'adresse : `http://localhost:5000`.
-
-2.  **Démarrez le Frontend (Serveur de Développement React)** :
-    ```bash
-    cd client
+    cd ../backend
     npm start
     ```
-    Le frontend démarrera généralement sur `http://localhost:3000` et ouvrira automatiquement l'application dans votre navigateur par défaut.
 
----
+6.  **Lancer l'application frontend**:
+    ```bash
+    cd ../frontend
+    npm start
+    ```
 
-## 💡 Guide d'Utilisation
+L'application devrait maintenant être accessible à l'adresse `http://localhost:3000`.
 
-### Accès au Système
+## Guide d'Utilisation
 
-Naviguez vers l'URL de l'application (localement : `http://localhost:3000`).
+Une fois l'application lancée, vous pouvez :
 
-Utilisez les **identifiants par défaut** pour vous connecter :
-* **Nom d'utilisateur** : `admin`
-* **Mot de passe** : `admin123`
+- Vous connecter à votre compte.
+- Ajouter et configurer de nouvelles caméras de surveillance.
+- Visualiser les flux en direct.
+- Accéder aux enregistrements passés.
+- Gérer les alertes et les notifications.
 
-### Exploration du Tableau de Bord
+## Contribuer
 
-Après une connexion réussie, le **tableau de bord intuitif** vous attend. Il vous permettra de visualiser et de gérer efficacement toutes les données de surveillance : zones, alertes et métriques système.
+Les contributions sont les bienvenues ! Pour contribuer à ce projet, veuillez suivre les étapes suivantes :
 
-### 🌐 API Backend : Points d'Accès
+1.  Forker le dépôt.
+2.  Créer une branche pour votre fonctionnalité (`git checkout -b feature/NouvelleFonctionnalite`).
+3.  Apporter vos modifications et les commiter (`git commit -m 'Ajout de NouvelleFonctionnalite'`).
+4.  Pousser vos modifications vers votre fork (`git push origin feature/NouvelleFonctionnalite`).
+5.  Ouvrir une Pull Request.
 
-Le backend expose une série de points d'API RESTful pour une interaction programmatique et transparente :
+## Licence
 
-* `POST /api/auth/login` : Authentification des utilisateurs.
-* `POST /api/auth/logout` : Déconnexion sécurisée de l'utilisateur.
-* `GET /api/auth/user` : Récupération des informations de l'utilisateur actuellement connecté.
-* `GET /api/zones` : Récupère la liste de toutes les zones de surveillance.
-* `POST /api/zones` : Crée une nouvelle zone de surveillance.
-* `PUT /api/zones/<int:zone_id>` : Met à jour les détails d'une zone spécifique par son ID.
-* `DELETE /api/zones/<int:zone_id>` : Supprime une zone spécifique par son ID.
-* `GET /api/alerts` : Récupère toutes les alertes générées par le système.
-* `PUT /api/alerts/<int:alert_id>/resolve` : Marque une alerte spécifique comme résolue.
-* `GET /api/metrics` : Récupère les métriques globales et détaillées du système.
-* `GET /api/threat-levels` : Récupère les niveaux de menace agrégés par zone.
-* `GET /api/status` : Vérifie le statut des différents services intégrés (ex: OpenAI, base de données).
+Ce projet est distribué sous la licence [MIT](LICENSE). (Assurez-vous d'inclure un fichier LICENSE).
 
-Le frontend est entièrement architecturé pour communiquer et interagir de manière transparente avec ces APIs, assurant une expérience utilisateur fluide et une gestion des données automatisée.
+## Contact:
+contact@greenfad.tech
+
+Pour toute question ou suggestion, n'hésitez pas à contacter:GreenFad.tech (https://github.com/Greenf1).
