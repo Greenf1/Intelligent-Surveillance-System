@@ -2,95 +2,81 @@
 
 ## Aperçu
 
-Ce projet est un **Système de Surveillance Intelligent** conçu pour offrir une solution de sécurité complète et moderne. Il combine une **interface utilisateur intuitive** avec un **backend robuste et performant**, garantissant une gestion des données fluide, sécurisée et en temps réel.
+Le **Système de Surveillance Intelligent** est une solution de sécurité moderne qui utilise des APIs Google pour les données géographiques et OpenAI pour l'analyse des anomalies. Ce système repose uniquement sur des services cloud, offrant une gestion fluide et sécurisée des informations sans nécessiter de composants matériels.
 
-## Caractéristiques Principales
+## Fonctionnalités Principales
 
-- **Interface Utilisateur Intuitive**: Une expérience utilisateur soignée pour une prise en main rapide et une utilisation efficace.
-- **Backend Performant**: Construit avec des technologies modernes pour assurer la stabilité, la rapidité et la scalabilité.
-- **Gestion de Données Sécurisée**: Des mesures de sécurité avancées pour protéger les flux vidéo et les données stockées.
-- **Surveillance en Temps Réel**: Visualisez les flux de caméras en direct avec une faible latence.
-- **Enregistrement et Lecture**: Enregistrez les flux vidéo et consultez les enregistrements à tout moment.
-- **Détection de Mouvement**: Recevez des alertes et des notifications en cas de détection d'activité.
+- **Analyse des Anomalies** : Utilisation de l'API OpenAI pour détecter et signaler les comportements suspects en temps réel.
+- **Données Géographiques** : Intégration des APIs Google pour enrichir les informations de localisation et de contexte.
+- **Interface Utilisateur Intuitive** : Accès facile aux fonctionnalités et visualisation des alertes.
+- **Notifications Automatiques** : Alerte instantanée en cas de détection d'anomalies.
 
 ## Stack Technologique
 
-- **Frontend**: TypeScript, React (ou autre framework/librairie, à préciser)
-- **Backend**: Node.js, Express (ou autre framework, à préciser)
-- **Base de Données**: (À préciser, par exemple, MongoDB, PostgreSQL)
-- **Communication en Temps Réel**: WebSockets (par exemple, avec Socket.IO)
+- **Frontend** : TypeScript, React (ou autre framework)
+- **API Google** : Pour les données géographiques (ex : Google Maps API)
+- **Analyse des Anomalies** : OpenAI API pour l'analyse des comportements
+- **Backend** : Node.js, Express (pour gérer les requêtes API)
 
-## Installation et Démarrage
-
-Pour installer et lancer ce système, suivez les étapes ci-dessous.
+## Installation
 
 ### Prérequis
 
 - Node.js et npm (ou yarn)
-- (Toute autre dépendance, comme une base de données spécifique)
+- Clés API Google et OpenAI
 
-### Instructions
+### Étapes
 
-1.  **Cloner le dépôt**:
+1. **Cloner le dépôt**
     ```bash
     git clone https://github.com/Greenf1/Intelligent-Surveillance-System.git
     cd Intelligent-Surveillance-System
     ```
 
-2.  **Installer les dépendances du backend**:
+2. **Installer les dépendances**
     ```bash
-    cd backend
     npm install
     ```
 
-3.  **Installer les dépendances du frontend**:
-    ```bash
-    cd ../frontend
-    npm install
-    ```
+3. **Configurer l’environnement**
+    - Créez un fichier `.env` à la racine du projet avec les variables suivantes :
+        ```
+        GOOGLE_API_KEY=your_google_api_key
+        OPENAI_API_KEY=your_openai_api_key
+        ```
 
-4.  **Configurer l'environnement**:
-    Créez un fichier `.env` dans le dossier `backend` avec les variables d'environnement nécessaires (clés d'API, informations de connexion à la base de données, etc.).
-
-5.  **Lancer le serveur backend**:
+4. **Démarrer l'application**
     ```bash
-    cd ../backend
     npm start
     ```
 
-6.  **Lancer l'application frontend**:
-    ```bash
-    cd ../frontend
-    npm start
-    ```
+L’application sera accessible sur `http://localhost:3000`.
 
-L'application devrait maintenant être accessible à l'adresse `http://localhost:3000`.
+## Utilisation
 
-## Guide d'Utilisation
+- Connectez-vous à votre compte.
+- Visualisez les alertes d'anomalies générées par le système.
+- Consultez les données géographiques pertinentes pour chaque alerte.
 
-Une fois l'application lancée, vous pouvez :
+## Contribution
 
-- Vous connecter à votre compte.
-- Ajouter et configurer de nouvelles caméras de surveillance.
-- Visualiser les flux en direct.
-- Accéder aux enregistrements passés.
-- Gérer les alertes et les notifications.
+Les contributions sont les bienvenues !  
+Pour contribuer :
 
-## Contribuer
-
-Les contributions sont les bienvenues ! Pour contribuer à ce projet, veuillez suivre les étapes suivantes :
-
-1.  Forker le dépôt.
-2.  Créer une branche pour votre fonctionnalité (`git checkout -b feature/NouvelleFonctionnalite`).
-3.  Apporter vos modifications et les commiter (`git commit -m 'Ajout de NouvelleFonctionnalite'`).
-4.  Pousser vos modifications vers votre fork (`git push origin feature/NouvelleFonctionnalite`).
-5.  Ouvrir une Pull Request.
+1. Forkez ce dépôt.
+2. Créez une branche (`git checkout -b feature/NouvelleFonctionnalite`).
+3. Commitez vos modifications (`git commit -m "Ajout de NouvelleFonctionnalite"`).
+4. Poussez la branche (`git push origin feature/NouvelleFonctionnalite`).
+5. Ouvrez une Pull Request.
 
 ## Licence
 
-Ce projet est distribué sous la licence [MIT](LICENSE). (Assurez-vous d'inclure un fichier LICENSE).
+Ce projet est sous licence [MIT](LICENSE).
 
-## Contact:
-contact@greenfad.tech
+## Contact
 
-Pour toute question ou suggestion, n'hésitez pas à contacter:GreenFad.tech (https://github.com/Greenf1).
+Pour toute question ou suggestion, contactez [GreenFad](https://github.com/Greenf1).
+
+---
+
+Si tu souhaites ajouter plus de détails ou des sections spécifiques, fais-le moi savoir !
