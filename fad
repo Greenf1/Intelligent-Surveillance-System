@@ -1,0 +1,132 @@
+# Système de Surveillance Intelligent
+
+![GitHub last commit](https://img.shields.io/github/last-commit/Greenf1/Intelligent-Surveillance-System?style=for-the-badge)
+![GitHub stars](https://img.shields.io/github/stars/Greenf1/Intelligent-Surveillance-System?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/Greenf1/Intelligent-Surveillance-System?style=for-the-badge)
+![GitHub license](https://img.shields.io/github/license/Greenf1/Intelligent-Surveillance-System?style=for-the-badge)
+
+## Table des Matières
+
+- [Aperçu](#aperçu)
+- [Fonctionnalités Principales](#fonctionnalités-principales)
+- [Stack Technologique](#stack-technologique)
+- [Installation](#installation)
+  - [Prérequis](#prérequis)
+  - [Étapes](#étapes)
+- [Utilisation](#utilisation)
+- [Contribution](#contribution)
+- [Licence](#licence)
+- [Contact](#contact)
+
+## Aperçu
+
+Le **Système de Surveillance Intelligent** est une solution de sécurité moderne et innovante, conçue pour offrir une gestion des informations fluide et sécurisée. S'appuyant exclusivement sur des services cloud, ce système intègre les APIs de Google pour les données géographiques et celles d'OpenAI pour une analyse avancée des anomalies, éliminant ainsi le besoin de composants matériels complexes.
+
+## Fonctionnalités Principales
+
+Ce système offre un ensemble robuste de fonctionnalités pour une surveillance efficace :
+
+-   **Analyse des Anomalies Intelligente** : Détection et signalement en temps réel des comportements suspects grâce à l'intégration de l'API OpenAI, permettant une identification proactive des menaces.
+-   **Données Géographiques Enrichies** : Utilisation des APIs Google (par exemple, Google Maps API) pour contextualiser les alertes avec des informations de localisation précises et pertinentes.
+-   **Interface Utilisateur Intuitive (UI)** : Une interface conviviale et réactive qui facilite l'accès aux fonctionnalités, la visualisation des alertes et la gestion des données.
+-   **Notifications Automatiques et Instantanées** : Alertes immédiates envoyées aux utilisateurs dès la détection d'une anomalie, assurant une réactivité maximale.
+
+## Stack Technologique
+
+Le projet est construit avec les technologies suivantes :
+
+-   **Frontend** : Développé avec **TypeScript** et **React** (ou un framework similaire) pour une expérience utilisateur dynamique et moderne.
+-   **Backend** : Propulsé par **Node.js** et **Express**, gérant efficacement les requêtes API et la logique métier.
+-   **Analyse des Comportements** : L'**API OpenAI** est au cœur de l'analyse des anomalies, offrant des capacités d'intelligence artificielle de pointe.
+-   **Services Géographiques** : Les **APIs Google** (telles que Google Maps API) sont utilisées pour l'intégration des données géographiques.
+
+## Installation
+
+Pour mettre en place le Système de Surveillance Intelligent sur votre machine locale, suivez les étapes ci-dessous :
+
+### Prérequis
+
+Assurez-vous d'avoir les éléments suivants installés :
+
+-   [Node.js](https://nodejs.org/) (version LTS recommandée) et [npm](https://www.npmjs.com/) (ou [yarn](https://yarnpkg.com/))
+-   Des clés API valides pour Google et OpenAI.
+
+### Étapes
+
+1.  **Cloner le dépôt**
+
+    ```bash
+    git clone https://github.com/Greenf1/Intelligent-Surveillance-System.git
+    cd Intelligent-Surveillance-System
+    ```
+
+2.  **Installer les dépendances**
+
+    ```bash
+    npm install
+    # ou si vous utilisez yarn
+    # yarn install
+    ```
+
+3.  **Configurer l’environnement**
+
+    Créez un fichier `.env` à la racine de votre projet et ajoutez-y vos clés API :
+
+    ```env
+    GOOGLE_API_KEY=votre_cle_api_google
+    OPENAI_API_KEY=votre_cle_api_openai
+    ```
+
+    > **Important** : Ne partagez jamais vos clés API publiquement et assurez-vous que votre fichier `.env` est bien inclus dans votre `.gitignore`.
+
+4.  **Démarrer l'application**
+
+    ```bash
+    npm start
+    # ou si vous utilisez yarn
+    # yarn start
+    ```
+
+    L’application sera alors accessible via votre navigateur à l'adresse `http://localhost:3000`.
+
+## Utilisation
+
+Une fois l'application démarrée, vous pouvez :
+
+-   Vous connecter à votre compte utilisateur.
+-   Visualiser en temps réel les alertes d'anomalies générées par le système.
+-   Consulter les données géographiques pertinentes associées à chaque alerte pour une meilleure compréhension du contexte.
+
+## Contribution
+
+Nous encourageons vivement les contributions de la communauté ! Si vous souhaitez améliorer ce projet, voici comment procéder :
+
+1.  **Forkez** ce dépôt sur votre compte GitHub.
+2.  **Créez une nouvelle branche** pour votre fonctionnalité ou correction de bug :
+    ```bash
+    git checkout -b feature/nom-de-votre-fonctionnalite
+    # Exemple : git checkout -b feature/amelioration-ui
+    ```
+3.  **Commitez vos modifications** avec un message clair et descriptif :
+    ```bash
+    git commit -m "feat: Ajout de la nouvelle fonctionnalité X" 
+    # ou "fix: Correction du bug Y"
+    ```
+4.  **Poussez votre branche** vers votre dépôt forké :
+    ```bash
+    git push origin feature/nom-de-votre-fonctionnalite
+    ```
+5.  **Ouvrez une Pull Request (PR)** depuis votre dépôt forké vers le dépôt original. Décrivez en détail les changements que vous avez apportés.
+
+## Licence
+
+Ce projet est distribué sous la licence [MIT](LICENSE). Vous êtes libre de l'utiliser, de le modifier et de le distribuer, sous réserve des conditions de la licence.
+
+## Contact
+
+Pour toute question, suggestion ou collaboration, n'hésitez pas à contacter :
+
+-   **GreenFad** : Via son profil GitHub [Greenf1](https://github.com/Greenf1)
+-   **Email** : contact@greenfad.tech
+
+Nous sommes ouverts aux retours et aux nouvelles idées !
