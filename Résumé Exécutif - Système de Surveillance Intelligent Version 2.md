@@ -194,7 +194,7 @@ La **Version 2 du Système de Surveillance Intelligent** représente un bond qua
 
 ---
 
-**Auteur** : Manus AI  
+**Auteur** : Greenfad
 **Date** : ${new Date().toLocaleDateString('fr-FR')}  
 **Version** : 2.0.0  
 **Statut** : Prêt pour production
